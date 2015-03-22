@@ -13,9 +13,13 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     var window: UIWindow?
 
-
     func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?) -> Bool {
         // Override point for customization after application launch.
+        
+        if let filePath = NSBundle.mainBundle().pathForResource("words", ofType: "plist") {
+            WordsHandler.sharedInstance.loadByPath(filePath)
+        }
+        
         return true
     }
 
