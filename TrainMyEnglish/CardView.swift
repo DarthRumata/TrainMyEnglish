@@ -10,19 +10,20 @@ import Foundation
 import UIKit
 
 class CardView: UIView {
-    
+
     @IBOutlet weak var wordTitle: UILabel!
     let kSideOffset: CGFloat = 15
     let kMinWidth: CGFloat = 60
     
     class func createWithWord(word: Word) -> CardView {
-        let cardView: CardView = NSBundle.mainBundle().loadNibNamed("CardView", owner: nil, options: nil)[0] as CardView
+        let cardView: CardView = NSBundle.mainBundle().loadNibNamed("CardView", owner: nil, options: nil)[0] as! CardView
         cardView.setWord(word)
         return cardView
     }
 
     required init(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
+        self.setTranslatesAutoresizingMaskIntoConstraints(false)
     }
     
     func setWord(word: Word) {

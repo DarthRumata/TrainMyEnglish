@@ -11,21 +11,7 @@ private let kInteritemSpace: CGFloat = 15
 
 class CardLayoutView: UIView {
 
-    var cards: Array<CardView>!
-
-    override init(frame: CGRect) {
-        super.init(frame: frame)
-        self.commonInit()
-    }
-
-    required init(coder decoder: NSCoder) {
-        super.init()
-        self.commonInit()
-    }
-
-    func commonInit() {
-        self.cards = []
-    }
+    var cards = [CardView]()
 
     func fillWithWords(words: Array<Word>) {
         let startOrigin = CGPointMake(kInteritemSpace, 0)
