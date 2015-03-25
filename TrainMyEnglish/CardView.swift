@@ -22,8 +22,6 @@ class CardView: UIView {
     
     private var word: Word!
     
-
-    
     class func createWithWord(word: Word) -> CardView {
         let cardView: CardView = NSBundle.mainBundle().loadNibNamed("CardView", owner: nil, options: nil)[0] as! CardView
         cardView.word = word

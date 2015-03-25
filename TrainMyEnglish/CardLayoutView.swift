@@ -83,7 +83,7 @@ class CardLayoutView: UIView {
             let previousCard: CardView? = i > 0 ? self.cards[i-1] : nil
             let currentCard = self.cards[i]
             if (previousCard != nil) {
-                if (previousCard!.frame.origin.y == currentCard.frame.origin.y) {
+                if (previousCard!.yOffsetConstraint.constant == currentCard.yOffsetConstraint.constant) {
                     currentCard.xOffsetConstraint.constant = previousCard!.xOffsetConstraint.constant + previousCard!.widthConstraint.constant + kInteritemSpace
                 } else {
                     if (previousCard!.xOffsetConstraint.constant + previousCard!.widthConstraint.constant + 2 * kInteritemSpace + card.widthConstraint.constant <= self.bounds.width) {

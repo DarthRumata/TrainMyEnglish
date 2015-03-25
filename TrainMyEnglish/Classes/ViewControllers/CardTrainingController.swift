@@ -9,7 +9,7 @@
 import UIKit
 
 private let kSpaceBetweenPanels: CGFloat = 50
-private let kWordPanelRatio: CGFloat = 2 / 3
+private let kWordPanelRatio: CGFloat = 0.6
 
 class CardTrainingController: UIViewController {
     @IBOutlet weak var sentencePanel: CardLayoutView!
@@ -49,6 +49,7 @@ class CardTrainingController: UIViewController {
             let location = recognizer.locationInView(recognizer.view)
             if let cardView = recognizer.view?.hitTest(location, withEvent: nil) as? CardView {
                 self.movingCard = cardView
+               self.view.bringSubviewToFront(self.movingCard!.superview!)
             }
         } else if (recognizer.state == UIGestureRecognizerState.Changed) {
             if (self.movingCard == nil) {
