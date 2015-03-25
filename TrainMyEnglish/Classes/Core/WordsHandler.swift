@@ -12,10 +12,8 @@ class WordsHandler {
 
     //MARK: Singleton
 
-    private struct Instance {
-        static var instance: WordsHandler!
-        static var dispatch_token: dispatch_once_t = 0
-    }
+    static var instance: WordsHandler!
+    static var dispatch_token: dispatch_once_t = 0
 
     private var nouns: Array<Noun>?
     private var pronouns: Array<Word>?
@@ -25,13 +23,13 @@ class WordsHandler {
     }
 
     class var sharedInstance: WordsHandler {
-        if Instance.instance == nil {
-            dispatch_once(&Instance.dispatch_token, {
-                Instance.instance = WordsHandler()
+        if instance == nil {
+            dispatch_once(&dispatch_token, {
+                self.instance = WordsHandler()
             })
         }
 
-        return Instance.instance
+        return instance
     }
 
     //MARK: Public

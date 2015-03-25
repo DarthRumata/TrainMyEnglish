@@ -9,33 +9,44 @@
 import Foundation
 import UIKit
 
-class CardView: UIView {
+private let kSideOffset: CGFloat = 15
+private let kMinWidth: CGFloat = 60
 
+class CardView: UIView {
+    
     @IBOutlet weak var wordTitle: UILabel!
-    let kSideOffset: CGFloat = 15
-    let kMinWidth: CGFloat = 60
+    
+    var widthConstraint: NSLayoutConstraint!
+    var xOffsetConstraint: NSLayoutConstraint!
+    var yOffsetConstraint: NSLayoutConstraint!
+    
+    private var word: Word!
+    
+
     
     class func createWithWord(word: Word) -> CardView {
         let cardView: CardView = NSBundle.mainBundle().loadNibNamed("CardView", owner: nil, options: nil)[0] as! CardView
-        cardView.setWord(word)
+        cardView.word = word
+        cardView.applyWordForm(word.base)
         return cardView
     }
-
+    
     required init(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
         self.setTranslatesAutoresizingMaskIntoConstraints(false)
     }
     
-    func setWord(word: Word) {
-        self.wordTitle.text = word.base
-        let maxWidth: CGFloat = UIScreen.mainScreen().bounds.width - self.kSideOffset * 2
-       var calculateWidth = ceil((word.base as NSString).boundingRectWithSize(
+    func applyWordForm(text: String) {
+        let upperText = text.uppercaseString
+        self.wordTitle.text = upperText
+        let maxWidth: CGFloat = UIScreen.mainScreen().bounds.width - kSideOffset * 2
+        var calculateWidth = ceil((upperText as NSString).boundingRectWithSize(
             CGSizeMake(maxWidth, self.wordTitle.bounds.height),
             options: NSStringDrawingOptions.UsesLineFragmentOrigin,
             attributes: [NSFontAttributeName: wordTitle.font],
             context: nil
-        ).width + self.kSideOffset * 2)
-        calculateWidth = calculateWidth < self.kMinWidth ? self.kMinWidth : calculateWidth
+            ).width + kSideOffset * 2)
+        calculateWidth = calculateWidth < kMinWidth ? kMinWidth : calculateWidth
         self.frame = CGRectMake(self.frame.origin.x, self.frame.origin.y, calculateWidth, self.frame.height)
         self.layoutIfNeeded()
     }
