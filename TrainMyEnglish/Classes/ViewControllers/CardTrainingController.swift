@@ -57,7 +57,6 @@ class CardTrainingController: UIViewController {
             }
             
             let globalCenter = self.movingCard!.superview!.convertPoint(CGPointMake(self.movingCard!.frame.midX, self.movingCard!.frame.midY) , toView: self.view)
-            println(globalCenter)
             if (CGRectContainsPoint(self.wordsPanel.frame, globalCenter)) {
                 hoveredView = self.wordsPanel
             } else if (CGRectContainsPoint(self.sentencePanel.frame, globalCenter)) {
@@ -65,8 +64,6 @@ class CardTrainingController: UIViewController {
             } else {
                 hoveredView = nil
             }
-            
-            println(hoveredView?.description)
             
             let translation = recognizer.translationInView(self.view)
             self.movingCard!.transform = CGAffineTransformMakeTranslation(translation.x, translation.y)
@@ -83,14 +80,18 @@ class CardTrainingController: UIViewController {
                         self.hoveredView = nil
                 })
             } else {
-                 UIView.animateWithDuration(0.2, animations: { () -> Void in
-                (self.movingCard!.superview! as! CardLayoutView).removeCard(self.movingCard!)
-                self.hoveredView!.addCard(self.movingCard!)
+                //finding view position in new superview
+                let currentOrigin = self.movingCard!.layer.presentationLayer()!.frame.origin
+                let convertedOrigin = CGPointMake(currentOrigin.x + self.movingCard!.superview!.frame.origin.x - self.hoveredView!.frame.origin.x, currentOrigin.y + self.movingCard!.superview!.frame.origin.y - self.hoveredView!.frame.origin.y)
                 self.movingCard!.transform = CGAffineTransformIdentity
-                } , completion: { (let finish) -> Void in
-                    self.movingCard = nil
-                    self.hoveredView = nil
-                })
+                (self.movingCard!.superview! as! CardLayoutView).removeCard(self.movingCard!)
+                
+                //correct view position after animation
+                self.movingCard!.frame = CGRectMake(convertedOrigin.x, convertedOrigin.y, self.movingCard!.frame.width, self.movingCard!.frame.height)
+                self.hoveredView!.addCard(self.movingCard!)
+                
+                self.movingCard = nil
+                self.hoveredView = nil
             }
         }
     }

@@ -6,7 +6,8 @@
 import Foundation
 import UIKit
 
-private let kAnimationTime: NSTimeInterval = 1
+private let kFillAnimationTime: NSTimeInterval = 1
+private let kArrangeAnimationTime: NSTimeInterval = 0.2
 private let kInteritemSpace: CGFloat = 15
 private let startOrigin = CGPointMake(kInteritemSpace, kInteritemSpace)
 
@@ -46,7 +47,7 @@ class CardLayoutView: UIView {
             card.yOffsetConstraint = card.autoPinEdgeToSuperviewEdge(ALEdge.Top, withInset: currentOrigin.y)
         }
         
-        UIView.animateWithDuration(kAnimationTime) { () -> Void in
+        UIView.animateWithDuration(kFillAnimationTime) { () -> Void in
             self.layoutIfNeeded()
         }
     }
@@ -64,11 +65,17 @@ class CardLayoutView: UIView {
             }
         }
         self.cards.append(card)
+       
         self.addSubview(card)
+        
         card.xOffsetConstraint = card.autoPinEdgeToSuperviewEdge(ALEdge.Left, withInset: currentOrigin.x)
         card.yOffsetConstraint = card.autoPinEdgeToSuperviewEdge(ALEdge.Top, withInset: currentOrigin.y)
         
-        self.layoutIfNeeded()
+        UIView.animateWithDuration(kArrangeAnimationTime, delay: 0, options: UIViewAnimationOptions.CurveEaseInOut, animations: { () -> Void in
+            self.layoutIfNeeded()
+            }, completion: nil)
+        
+        
     }
     
     func removeCard(card: CardView) {
@@ -98,8 +105,9 @@ class CardLayoutView: UIView {
             }
             
         }
-        
-        self.layoutIfNeeded()
+        UIView.animateWithDuration(kArrangeAnimationTime, delay: 0, options: UIViewAnimationOptions.CurveEaseInOut, animations: { () -> Void in
+            self.layoutIfNeeded()
+            }, completion: nil)
     }
     
     private func generateStartPosition(card: CardView) -> UIViewAnimationOptions {
