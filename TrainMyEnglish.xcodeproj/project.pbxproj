@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		3C3F6EB0A4D8CCD8211054F0 /* libPods-TrainMyEnglish.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 23AE83FDA26BD515F4A10CE9 /* libPods-TrainMyEnglish.a */; };
+		79B542C8973811A4006634D2 /* Geometry.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79B543654BB83429D30333AA /* Geometry.swift */; };
 		92350FD61AB5A9AF00386393 /* words.plist in Resources */ = {isa = PBXBuildFile; fileRef = 92350FD51AB5A9AF00386393 /* words.plist */; };
 		929120025471325C08895B52 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 92912DB5A80364F85C43B744 /* Images.xcassets */; };
 		929122B033BBEE9EC3E6FFBC /* WordsHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9291292D9CF4BF1AE8BB2A5E /* WordsHandler.swift */; };
@@ -27,6 +28,7 @@
 /* Begin PBXFileReference section */
 		1CC7D126CEA61D2092410DB5 /* Pods-TrainMyEnglish.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-TrainMyEnglish.debug.xcconfig"; path = "Pods/Target Support Files/Pods-TrainMyEnglish/Pods-TrainMyEnglish.debug.xcconfig"; sourceTree = "<group>"; };
 		23AE83FDA26BD515F4A10CE9 /* libPods-TrainMyEnglish.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-TrainMyEnglish.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+		79B543654BB83429D30333AA /* Geometry.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Geometry.swift; sourceTree = "<group>"; };
 		79B5470E86E7BC31EBD17A28 /* TrainMyEnglish-Bridging-Header.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "TrainMyEnglish-Bridging-Header.h"; sourceTree = "<group>"; };
 		92350FB01AB5A92C00386393 /* TrainMyEnglish.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = TrainMyEnglish.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		92350FB41AB5A92C00386393 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -67,6 +69,14 @@
 			name = Frameworks;
 			sourceTree = "<group>";
 		};
+		79B5460DCF6B5868D95BFD09 /* Extensions */ = {
+			isa = PBXGroup;
+			children = (
+				79B543654BB83429D30333AA /* Geometry.swift */,
+			);
+			path = Extensions;
+			sourceTree = "<group>";
+		};
 		92350FA71AB5A92C00386393 = {
 			isa = PBXGroup;
 			children = (
@@ -91,6 +101,7 @@
 				92350FB31AB5A92C00386393 /* Supporting Files */,
 				92912EA2955015F45A3EA110 /* Classes */,
 				79B5470E86E7BC31EBD17A28 /* TrainMyEnglish-Bridging-Header.h */,
+				79B5460DCF6B5868D95BFD09 /* Extensions */,
 			);
 			path = TrainMyEnglish;
 			sourceTree = "<group>";
@@ -283,6 +294,7 @@
 				92912C1EAD161BD78BD4B372 /* Word.swift in Sources */,
 				92912C334D4E8DE710B41D91 /* Noun.swift in Sources */,
 				92912B57FE733F40EA64A27D /* CardLayoutView.swift in Sources */,
+				79B542C8973811A4006634D2 /* Geometry.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

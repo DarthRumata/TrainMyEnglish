@@ -46,6 +46,8 @@ class CardView: UIView {
             ).width + kSideOffset * 2)
         calculateWidth = calculateWidth < kMinWidth ? kMinWidth : calculateWidth
         self.frame = CGRectMake(self.frame.origin.x, self.frame.origin.y, calculateWidth, self.frame.height)
+        self.widthConstraint = self.autoSetDimension(ALDimension.Width, toSize: self.bounds.width)
+        self.autoSetDimension(ALDimension.Height, toSize: self.bounds.height)
         self.layoutIfNeeded()
     }
     

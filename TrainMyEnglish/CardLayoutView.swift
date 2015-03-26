@@ -13,9 +13,11 @@ private let startOrigin = CGPointMake(kInteritemSpace, kInteritemSpace)
 
 class CardLayoutView: UIView {
     
-    var cards = [CardView]()
+    var canReorder = false
     
-    enum StartPositionType: Int {
+    private var cards = [CardView]()
+    
+    private enum StartPositionType: Int {
         case Left = 0, Right, Bottom
     }
     
@@ -40,8 +42,6 @@ class CardLayoutView: UIView {
             } else {
                 currentOrigin = CGPointMake(startOrigin.x, currentOrigin.y + card.bounds.height + kInteritemSpace)
             }
-            card.widthConstraint = card.autoSetDimension(ALDimension.Width, toSize: card.bounds.width)
-            card.autoSetDimension(ALDimension.Height, toSize: card.bounds.height)
             
             card.xOffsetConstraint = card.autoPinEdgeToSuperviewEdge(ALEdge.Left, withInset: currentOrigin.x)
             card.yOffsetConstraint = card.autoPinEdgeToSuperviewEdge(ALEdge.Top, withInset: currentOrigin.y)
@@ -53,61 +53,78 @@ class CardLayoutView: UIView {
     }
     
     func addCard(card: CardView) {
+        var index = self.cards.count
+        if (self.canReorder) {
+            var maxIntersectionSquare: CGFloat = 0
+            for var i = 0; i < self.cards.count; i++ {
+                let listCard = self.cards[i]
+                let square = CGRectIntersection(card.frame, listCard.frame).square
+                if (square > maxIntersectionSquare) {
+                    maxIntersectionSquare = square
+                    index = i
+                }
+            }
+        }
+        self.insertCard(card, index: index)
+    }
+    
+    func insertCard(card: CardView, index: Int) {
         var currentOrigin: CGPoint!
-        if (self.cards.count == 0) {
+        if (self.cards.count == 0 || index == 0) {
             currentOrigin = startOrigin;
         } else {
-            let lastCard = self.cards.last!
+            let lastCard = index >= self.cards.count ? self.cards.last! : self.cards[index - 1]
             if (lastCard.frame.origin.x + lastCard.bounds.width + kInteritemSpace * 2 + card.bounds.width <= self.bounds.width) {
                 currentOrigin = CGPointMake(lastCard.frame.origin.x + lastCard.bounds.width + kInteritemSpace, lastCard.frame.origin.y)
             } else {
                 currentOrigin = CGPointMake(startOrigin.x, lastCard.frame.origin.y + card.bounds.height + kInteritemSpace)
             }
         }
-        self.cards.append(card)
-       
+        self.cards.insert(card, atIndex: index)
+        
         self.addSubview(card)
         
         card.xOffsetConstraint = card.autoPinEdgeToSuperviewEdge(ALEdge.Left, withInset: currentOrigin.x)
         card.yOffsetConstraint = card.autoPinEdgeToSuperviewEdge(ALEdge.Top, withInset: currentOrigin.y)
         
-        UIView.animateWithDuration(kArrangeAnimationTime, delay: 0, options: UIViewAnimationOptions.CurveEaseInOut, animations: { () -> Void in
-            self.layoutIfNeeded()
-            }, completion: nil)
-        
-        
+        self.rearrangeCards(index + 1, to: self.cards.count - 1)
     }
     
     func removeCard(card: CardView) {
         card.removeFromSuperview()
         let index = find(self.cards, card)!
         self.cards.removeAtIndex(index)
-        if (index == self.cards.count) {
-            return
-        }
-        //now index points to next card after removed
-        for i in index...(self.cards.count - 1) {
-            let previousCard: CardView? = i > 0 ? self.cards[i-1] : nil
-            let currentCard = self.cards[i]
-            if (previousCard != nil) {
-                if (previousCard!.yOffsetConstraint.constant == currentCard.yOffsetConstraint.constant) {
-                    currentCard.xOffsetConstraint.constant = previousCard!.xOffsetConstraint.constant + previousCard!.widthConstraint.constant + kInteritemSpace
-                } else {
-                    if (previousCard!.xOffsetConstraint.constant + previousCard!.widthConstraint.constant + 2 * kInteritemSpace + card.widthConstraint.constant <= self.bounds.width) {
+        self.rearrangeCards(index, to: (self.cards.count - 1))
+    }
+    
+    private func rearrangeCards(from: Int, to: Int) {
+        if (from < self.cards.count) {
+            for i in from...to {
+                let previousCard: CardView? = i > 0 ? self.cards[i-1] : nil
+                let currentCard = self.cards[i]
+                if (previousCard != nil) {
+                    if (self.canBePlacedInSameRow(previousCard!, currentCard: currentCard)) {
                         currentCard.xOffsetConstraint.constant = previousCard!.xOffsetConstraint.constant + previousCard!.widthConstraint.constant + kInteritemSpace
                         currentCard.yOffsetConstraint.constant = previousCard!.yOffsetConstraint.constant
                     } else {
                         currentCard.xOffsetConstraint.constant = startOrigin.x
+                        currentCard.yOffsetConstraint.constant = previousCard!.yOffsetConstraint.constant + previousCard!.bounds.height + kInteritemSpace
                     }
-                }
-            } else {
-                currentCard.xOffsetConstraint.constant = startOrigin.x
+                } else {
+                    currentCard.xOffsetConstraint.constant = startOrigin.x
+                    currentCard.yOffsetConstraint.constant = startOrigin.y
+                }  
             }
-            
         }
+        
         UIView.animateWithDuration(kArrangeAnimationTime, delay: 0, options: UIViewAnimationOptions.CurveEaseInOut, animations: { () -> Void in
             self.layoutIfNeeded()
             }, completion: nil)
+        
+    }
+    
+    private func canBePlacedInSameRow(previousCard: CardView, currentCard: CardView) -> Bool {
+        return previousCard.xOffsetConstraint.constant + previousCard.widthConstraint.constant + 2 * kInteritemSpace + currentCard.widthConstraint.constant <= self.bounds.width
     }
     
     private func generateStartPosition(card: CardView) -> UIViewAnimationOptions {

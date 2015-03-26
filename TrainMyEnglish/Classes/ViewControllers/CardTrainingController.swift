@@ -25,6 +25,7 @@ class CardTrainingController: UIViewController {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
         self.wordsPanelHC.constant = self.view.bounds.height * kWordPanelRatio
+        self.sentencePanel.canReorder = true
         
         let recognizer = UIPanGestureRecognizer(target: self, action: Selector("panGesture:"))
         self.view.addGestureRecognizer(recognizer)
@@ -49,7 +50,8 @@ class CardTrainingController: UIViewController {
             let location = recognizer.locationInView(recognizer.view)
             if let cardView = recognizer.view?.hitTest(location, withEvent: nil) as? CardView {
                 self.movingCard = cardView
-               self.view.bringSubviewToFront(self.movingCard!.superview!)
+                self.view.bringSubviewToFront(self.movingCard!.superview!)
+                self.movingCard!.superview!.bringSubviewToFront(self.movingCard!)
             }
         } else if (recognizer.state == UIGestureRecognizerState.Changed) {
             if (self.movingCard == nil) {
@@ -72,7 +74,7 @@ class CardTrainingController: UIViewController {
                 return
             }
             
-            if (hoveredView == nil || self.movingCard!.superview! == hoveredView!) {
+            if (hoveredView == nil || (self.movingCard!.superview! == hoveredView! && !hoveredView!.canReorder)) {
                 UIView.animateWithDuration(0.2, animations: { () -> Void in
                     self.movingCard!.transform = CGAffineTransformIdentity
                     }, completion: { (let finish) -> Void in
