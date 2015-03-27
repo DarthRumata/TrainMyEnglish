@@ -9,6 +9,8 @@
 import Foundation
 import UIKit
 
+let kTapCardNotification = "TapCardNotification"
+
 private let kSideOffset: CGFloat = 15
 private let kMinWidth: CGFloat = 60
 
@@ -20,7 +22,7 @@ class CardView: UIView {
     var xOffsetConstraint: NSLayoutConstraint!
     var yOffsetConstraint: NSLayoutConstraint!
     
-    private var word: Word!
+    private(set) var word: Word!
     
     class func createWithWord(word: Word) -> CardView {
         let cardView: CardView = NSBundle.mainBundle().loadNibNamed("CardView", owner: nil, options: nil)[0] as! CardView
@@ -32,6 +34,8 @@ class CardView: UIView {
     required init(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
         self.setTranslatesAutoresizingMaskIntoConstraints(false)
+        let recognizer = UITapGestureRecognizer(target: self, action: Selector("tapOnCard"))
+        self.addGestureRecognizer(recognizer)
     }
     
     func applyWordForm(text: String) {
@@ -49,6 +53,12 @@ class CardView: UIView {
         self.widthConstraint = self.autoSetDimension(ALDimension.Width, toSize: self.bounds.width)
         self.autoSetDimension(ALDimension.Height, toSize: self.bounds.height)
         self.layoutIfNeeded()
+    }
+    
+    //MARK: gesture actions
+    
+    func tapOnCard() {
+        NSNotificationCenter.defaultCenter().postNotificationName(kTapCardNotification, object: self)
     }
     
 }

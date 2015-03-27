@@ -10,6 +10,7 @@ import UIKit
 
 private let kSpaceBetweenPanels: CGFloat = 50
 private let kWordPanelRatio: CGFloat = 0.6
+private let kCancelMovementDuration = 0.2
 
 class CardTrainingController: UIViewController {
     @IBOutlet weak var sentencePanel: CardLayoutView!
@@ -29,6 +30,12 @@ class CardTrainingController: UIViewController {
         
         let recognizer = UIPanGestureRecognizer(target: self, action: Selector("panGesture:"))
         self.view.addGestureRecognizer(recognizer)
+        
+        NSNotificationCenter.defaultCenter().addObserver(self, selector: Selector("cardTapped:"), name: kTapCardNotification, object: nil)
+    }
+    
+    deinit {
+       NSNotificationCenter.defaultCenter().removeObserver(self, name: kTapCardNotification, object: nil)
     }
     
     override func viewDidAppear(animated: Bool) {
@@ -75,7 +82,7 @@ class CardTrainingController: UIViewController {
             }
             
             if (hoveredView == nil || (self.movingCard!.superview! == hoveredView! && !hoveredView!.canReorder)) {
-                UIView.animateWithDuration(0.2, animations: { () -> Void in
+                UIView.animateWithDuration(kCancelMovementDuration, animations: { () -> Void in
                     self.movingCard!.transform = CGAffineTransformIdentity
                     }, completion: { (let finish) -> Void in
                         self.movingCard = nil
@@ -98,6 +105,12 @@ class CardTrainingController: UIViewController {
         }
     }
     
+    //MARK: Tap gesture
+    
+    func cardTapped(notification: NSNotification) {
+        let cardView: CardView = notification.object as! CardView;
+        EditCardView.show(cardView, canDelete: true)
+    }
     
 }
 

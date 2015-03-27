@@ -9,6 +9,8 @@
 /* Begin PBXBuildFile section */
 		3C3F6EB0A4D8CCD8211054F0 /* libPods-TrainMyEnglish.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 23AE83FDA26BD515F4A10CE9 /* libPods-TrainMyEnglish.a */; };
 		79B542C8973811A4006634D2 /* Geometry.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79B543654BB83429D30333AA /* Geometry.swift */; };
+		85D7773A1AC4180E000EA555 /* EditCardView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 85D777391AC4180E000EA555 /* EditCardView.xib */; };
+		85D7773C1AC41B12000EA555 /* EditCardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85D7773B1AC41B12000EA555 /* EditCardView.swift */; };
 		92350FD61AB5A9AF00386393 /* words.plist in Resources */ = {isa = PBXBuildFile; fileRef = 92350FD51AB5A9AF00386393 /* words.plist */; };
 		929120025471325C08895B52 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 92912DB5A80364F85C43B744 /* Images.xcassets */; };
 		929122B033BBEE9EC3E6FFBC /* WordsHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9291292D9CF4BF1AE8BB2A5E /* WordsHandler.swift */; };
@@ -30,6 +32,8 @@
 		23AE83FDA26BD515F4A10CE9 /* libPods-TrainMyEnglish.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-TrainMyEnglish.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		79B543654BB83429D30333AA /* Geometry.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Geometry.swift; sourceTree = "<group>"; };
 		79B5470E86E7BC31EBD17A28 /* TrainMyEnglish-Bridging-Header.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "TrainMyEnglish-Bridging-Header.h"; sourceTree = "<group>"; };
+		85D777391AC4180E000EA555 /* EditCardView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = EditCardView.xib; sourceTree = "<group>"; };
+		85D7773B1AC41B12000EA555 /* EditCardView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EditCardView.swift; sourceTree = "<group>"; };
 		92350FB01AB5A92C00386393 /* TrainMyEnglish.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = TrainMyEnglish.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		92350FB41AB5A92C00386393 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		92350FD51AB5A9AF00386393 /* words.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = words.plist; sourceTree = "<group>"; };
@@ -132,6 +136,8 @@
 				92912BEA3B892901B0E9F1B3 /* CardView.swift */,
 				9291290DB4B9770644F2C4C9 /* CardView.xib */,
 				92912D0EEF6DE9D4077A36F8 /* CardLayoutView.swift */,
+				85D777391AC4180E000EA555 /* EditCardView.xib */,
+				85D7773B1AC41B12000EA555 /* EditCardView.swift */,
 			);
 			name = Views;
 			path = TrainMyEnglish;
@@ -239,6 +245,7 @@
 			files = (
 				92350FD61AB5A9AF00386393 /* words.plist in Resources */,
 				929126152D80E48E95E9FD05 /* CardView.xib in Resources */,
+				85D7773A1AC4180E000EA555 /* EditCardView.xib in Resources */,
 				929120025471325C08895B52 /* Images.xcassets in Resources */,
 				9291255E0B388671D45FF453 /* LaunchScreen.xib in Resources */,
 				92912907354E5724DF8E04C4 /* Main.storyboard in Resources */,
@@ -291,6 +298,7 @@
 				9291234CF838FE5782C23714 /* CardTrainingController.swift in Sources */,
 				929122B033BBEE9EC3E6FFBC /* WordsHandler.swift in Sources */,
 				92912B08F495696F38F49551 /* Verb.swift in Sources */,
+				85D7773C1AC41B12000EA555 /* EditCardView.swift in Sources */,
 				92912C1EAD161BD78BD4B372 /* Word.swift in Sources */,
 				92912C334D4E8DE710B41D91 /* Noun.swift in Sources */,
 				92912B57FE733F40EA64A27D /* CardLayoutView.swift in Sources */,
