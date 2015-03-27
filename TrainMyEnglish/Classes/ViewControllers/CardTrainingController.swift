@@ -57,8 +57,7 @@ class CardTrainingController: UIViewController {
             let location = recognizer.locationInView(recognizer.view)
             if let cardView = recognizer.view?.hitTest(location, withEvent: nil) as? CardView {
                 self.movingCard = cardView
-                self.view.bringSubviewToFront(self.movingCard!.superview!)
-                self.movingCard!.superview!.bringSubviewToFront(self.movingCard!)
+                self.moveCardToVeryTop(self.movingCard!)
             }
         } else if (recognizer.state == UIGestureRecognizerState.Changed) {
             if (self.movingCard == nil) {
@@ -109,7 +108,13 @@ class CardTrainingController: UIViewController {
     
     func cardTapped(notification: NSNotification) {
         let cardView: CardView = notification.object as! CardView;
+        self.moveCardToVeryTop(cardView)
         EditCardView.show(cardView, canDelete: true)
+    }
+    
+    private func moveCardToVeryTop(card: CardView) {
+        self.view.bringSubviewToFront(card.superview!)
+        card.superview!.bringSubviewToFront(card)
     }
     
 }
