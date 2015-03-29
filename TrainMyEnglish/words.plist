@@ -5,10 +5,13 @@
 	<key>nouns</key>
 	<array>
 		<dict>
-			<key>base</key>
-			<string>box</string>
-			<key>plural</key>
-			<string>boxes</string>
+			<key>forms</key>
+			<dict>
+				<key>base</key>
+				<string>box</string>
+				<key>plural</key>
+				<string>boxes</string>
+			</dict>
 			<key>translation</key>
 			<string>коробка</string>
 			<key>tags</key>
@@ -17,26 +20,32 @@
 			</array>
 		</dict>
 		<dict>
+			<key>forms</key>
+			<dict>
+				<key>base</key>
+				<string>woman</string>
+				<key>plural</key>
+				<string>women</string>
+			</dict>
 			<key>tags</key>
 			<array>
 				<string>thirdFace</string>
 			</array>
-			<key>base</key>
-			<string>woman</string>
-			<key>plural</key>
-			<string>women</string>
 			<key>translation</key>
 			<string>женщина</string>
 		</dict>
 		<dict>
+			<key>forms</key>
+			<dict>
+				<key>base</key>
+				<string>man</string>
+				<key>plural</key>
+				<string>men</string>
+			</dict>
 			<key>tags</key>
 			<array>
 				<string>thirdFace</string>
 			</array>
-			<key>base</key>
-			<string>man</string>
-			<key>plural</key>
-			<string>men</string>
 			<key>translation</key>
 			<string>мужчина</string>
 		</dict>
@@ -44,42 +53,54 @@
 	<key>pronouns</key>
 	<array>
 		<dict>
+			<key>forms</key>
+			<dict>
+				<key>base</key>
+				<string>It</string>
+			</dict>
 			<key>tags</key>
 			<array>
 				<string>thirdFace</string>
 			</array>
-			<key>base</key>
-			<string>It</string>
 			<key>translation</key>
 			<string>оно</string>
 		</dict>
 		<dict>
+			<key>forms</key>
+			<dict>
+				<key>base</key>
+				<string>He</string>
+			</dict>
 			<key>tags</key>
 			<array>
 				<string>thirdFace</string>
 			</array>
-			<key>base</key>
-			<string>He</string>
 			<key>translation</key>
 			<string>он</string>
 		</dict>
 		<dict>
+			<key>forms</key>
+			<dict>
+				<key>base</key>
+				<string>You</string>
+			</dict>
 			<key>tags</key>
 			<array>
 				<string>groupFace</string>
 			</array>
-			<key>base</key>
-			<string>You</string>
 			<key>translation</key>
 			<string>ты</string>
 		</dict>
 		<dict>
+			<key>forms</key>
+			<dict>
+				<key>base</key>
+				<string>I</string>
+			</dict>
 			<key>tags</key>
 			<array>
 				<string>personalFace</string>
 			</array>
-			<key>base</key>
-			<string>I</string>
 			<key>translation</key>
 			<string>я</string>
 		</dict>
@@ -91,12 +112,12 @@
 			<array>
 				<string>mainVerb</string>
 			</array>
-			<key>base</key>
-			<string>be</string>
 			<key>translation</key>
 			<string>быть, являться</string>
 			<key>forms</key>
 			<dict>
+				<key>base</key>
+				<string>be</string>
 				<key>thirdFace</key>
 				<string>is</string>
 				<key>groupFace</key>

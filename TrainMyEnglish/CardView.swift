@@ -23,6 +23,11 @@ class CardView: UIView {
     var yOffsetConstraint: NSLayoutConstraint!
     
     private(set) var word: Word!
+    private(set) var currentForm: String!
+    
+    var layoutView: CardLayoutView {
+        return self.superview as! CardLayoutView
+    }
     
     class func createWithWord(word: Word) -> CardView {
         let cardView: CardView = NSBundle.mainBundle().loadNibNamed("CardView", owner: nil, options: nil)[0] as! CardView
@@ -34,11 +39,10 @@ class CardView: UIView {
     required init(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
         self.setTranslatesAutoresizingMaskIntoConstraints(false)
-        let recognizer = UITapGestureRecognizer(target: self, action: Selector("tapOnCard"))
-        self.addGestureRecognizer(recognizer)
     }
     
     func applyWordForm(text: String) {
+        currentForm = text
         let upperText = text.uppercaseString
         self.wordTitle.text = upperText
         let maxWidth: CGFloat = UIScreen.mainScreen().bounds.width - kSideOffset * 2
@@ -50,15 +54,14 @@ class CardView: UIView {
             ).width + kSideOffset * 2)
         calculateWidth = calculateWidth < kMinWidth ? kMinWidth : calculateWidth
         self.frame = CGRectMake(self.frame.origin.x, self.frame.origin.y, calculateWidth, self.frame.height)
-        self.widthConstraint = self.autoSetDimension(ALDimension.Width, toSize: self.bounds.width)
-        self.autoSetDimension(ALDimension.Height, toSize: self.bounds.height)
+        if (self.widthConstraint == nil) {
+            self.widthConstraint = self.autoSetDimension(ALDimension.Width, toSize: self.bounds.width)
+            self.autoSetDimension(ALDimension.Height, toSize: self.bounds.height)
+        } else {
+           self.widthConstraint.constant = self.bounds.width
+        }
+
         self.layoutIfNeeded()
-    }
-    
-    //MARK: gesture actions
-    
-    func tapOnCard() {
-        NSNotificationCenter.defaultCenter().postNotificationName(kTapCardNotification, object: self)
     }
     
 }

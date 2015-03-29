@@ -12,7 +12,7 @@ private let kSpaceBetweenPanels: CGFloat = 50
 private let kWordPanelRatio: CGFloat = 0.6
 private let kCancelMovementDuration = 0.2
 
-class CardTrainingController: UIViewController {
+class CardTrainingController: UIViewController, UIGestureRecognizerDelegate {
     @IBOutlet weak var sentencePanel: CardLayoutView!
     @IBOutlet weak var wordsPanel: CardLayoutView!
     @IBOutlet weak var wordsPanelHC: NSLayoutConstraint!
@@ -27,11 +27,14 @@ class CardTrainingController: UIViewController {
         // Do any additional setup after loading the view, typically from a nib.
         self.wordsPanelHC.constant = self.view.bounds.height * kWordPanelRatio
         self.sentencePanel.canReorder = true
+        EditCardView.presentingView = self.view
         
-        let recognizer = UIPanGestureRecognizer(target: self, action: Selector("panGesture:"))
-        self.view.addGestureRecognizer(recognizer)
+        let panRecognizer = UIPanGestureRecognizer(target: self, action: Selector("panGesture:"))
+        self.view.addGestureRecognizer(panRecognizer)
         
-        NSNotificationCenter.defaultCenter().addObserver(self, selector: Selector("cardTapped:"), name: kTapCardNotification, object: nil)
+        let tapRecognizer = UITapGestureRecognizer(target: self, action: Selector("cardTapped:"))
+        tapRecognizer.delegate = self
+        self.view.addGestureRecognizer(tapRecognizer)
     }
     
     deinit {
@@ -106,15 +109,28 @@ class CardTrainingController: UIViewController {
     
     //MARK: Tap gesture
     
-    func cardTapped(notification: NSNotification) {
-        let cardView: CardView = notification.object as! CardView;
-        self.moveCardToVeryTop(cardView)
-        EditCardView.show(cardView, canDelete: true)
+    func cardTapped(recognizer: UITapGestureRecognizer) {
+        let location = recognizer.locationInView(recognizer.view)
+        let cardView = recognizer.view?.hitTest(location, withEvent: nil) as? CardView
+        if cardView != nil && !EditCardView.isVisible {
+            self.moveCardToVeryTop(cardView!)
+            EditCardView.show(cardView!, canDelete: true)
+        } else {
+            EditCardView.hide()
+        }
+
     }
     
     private func moveCardToVeryTop(card: CardView) {
         self.view.bringSubviewToFront(card.superview!)
         card.superview!.bringSubviewToFront(card)
+    }
+    
+    //MARK: Gesture recognizer delegate
+    
+    func gestureRecognizer(gestureRecognizer: UIGestureRecognizer, shouldReceiveTouch touch: UITouch) -> Bool {
+        let location = touch.locationInView(gestureRecognizer.view)
+        return !EditCardView.containsPoint(location, inView: self.view)
     }
     
 }

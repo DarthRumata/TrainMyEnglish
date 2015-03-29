@@ -97,6 +97,10 @@ class CardLayoutView: UIView {
         self.rearrangeCards(index, to: (self.cards.count - 1))
     }
     
+    func rearrangeAllCards() {
+        self.rearrangeCards(0, to: self.cards.count - 1)
+    }
+    
     private func rearrangeCards(from: Int, to: Int) {
         if (from < self.cards.count) {
             for i in from...to {

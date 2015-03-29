@@ -15,9 +15,9 @@ class WordsHandler {
     static var instance: WordsHandler!
     static var dispatch_token: dispatch_once_t = 0
 
-    private var nouns: Array<Noun>?
+    private var nouns: Array<Word>?
     private var pronouns: Array<Word>?
-    private var verbs: Array<Verb>?
+    private var verbs: Array<Word>?
 
     private init() {
     }
@@ -34,7 +34,7 @@ class WordsHandler {
 
     //MARK: Public
 
-    func getNouns() -> Array<Noun>? {
+    func getNouns() -> Array<Word>? {
         return self.nouns
     }
 
@@ -75,7 +75,7 @@ class WordsHandler {
 
         let nouns: Array<Dictionary<String, AnyObject>> = content!.objectForKey("nouns") as! Array
         for rawNoun in nouns {
-            let noun = WordsParser.parseNoun(rawNoun)
+            let noun = WordsParser.parseWord(rawNoun, type: WordType.Noun)
 
             if self.nouns == nil {
                 self.nouns = [noun]
@@ -87,7 +87,7 @@ class WordsHandler {
 
         let pronouns: Array<Dictionary<String, AnyObject>> = content!.objectForKey("pronouns") as! Array
         for rawPronoun in pronouns {
-            let pronoun = WordsParser.parseWord(rawPronoun)
+            let pronoun = WordsParser.parseWord(rawPronoun, type: WordType.Pronoun)
 
             if self.pronouns == nil {
                 self.pronouns = [pronoun]
@@ -99,7 +99,7 @@ class WordsHandler {
 
         let verbs: Array<Dictionary<String, AnyObject>> = content!.objectForKey("verbs") as! Array
         for rawVerb in verbs {
-            let verb = WordsParser.parseVerb(rawVerb)
+            let verb = WordsParser.parseWord(rawVerb, type: WordType.Verb)
 
             if self.verbs == nil {
                 self.verbs = [verb]
@@ -121,28 +121,16 @@ class WordsHandler {
 
 private class WordsParser {
 
-    class func parseWord(rawData: Dictionary<String, AnyObject>) -> Word {
-        let base = rawData["base"] as! String
+    class func parseWord(rawData: Dictionary<String, AnyObject>, type: WordType) -> Word {
+        let forms = rawData["forms"] as! Dictionary<String, String>
         let translation = rawData["translation"] as! String
-        let word = Word(base: base, translation: translation)
+        let word = Word(forms: forms, translation: translation, type: type)
         if let tags = rawData["tags"] as? Array<String> {
             word.tags = tags
         }
         return word
     }
-
-    class func parseNoun(rawData: Dictionary<String, AnyObject>) -> Noun {
-        let word = self.parseWord(rawData)
-        let plural = rawData["plural"] as! String
-        let noun = Noun(word: word, plural: plural)
-        return noun
-    }
-
-    class func parseVerb(rawData: Dictionary<String, AnyObject>) -> Verb {
-        let word = self.parseWord(rawData)
-        let forms = rawData["forms"] as! Dictionary<String, String>
-        let verb = Verb(word: word, forms: forms)
-        return verb
-    }
+    
+    
 
 }

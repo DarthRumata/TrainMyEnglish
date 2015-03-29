@@ -7,17 +7,17 @@
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
         <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
         <view contentMode="scaleToFill" id="iN0-l3-epB" customClass="EditCardView" customModule="TrainMyEnglish" customModuleProvider="target">
-            <rect key="frame" x="0.0" y="0.0" width="275" height="290"/>
+            <rect key="frame" x="0.0" y="0.0" width="574" height="478"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" verticalCompressionResistancePriority="252" text="Edit:" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="WFV-wU-C1g">
-                    <rect key="frame" x="119" y="8" width="37" height="24"/>
+                    <rect key="frame" x="269" y="8" width="37" height="24"/>
                     <fontDescription key="fontDescription" name="Futura-Medium" family="Futura" pointSize="18"/>
                     <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                     <nil key="highlightedColor"/>
                 </label>
-                <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" style="plain" separatorStyle="default" allowsSelection="NO" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" translatesAutoresizingMaskIntoConstraints="NO" id="Rjy-s5-rjs">
-                    <rect key="frame" x="15" y="69" width="245" height="150"/>
+                <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" translatesAutoresizingMaskIntoConstraints="NO" id="Rjy-s5-rjs">
+                    <rect key="frame" x="15" y="69" width="544" height="338"/>
                     <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     <connections>
                         <outlet property="dataSource" destination="iN0-l3-epB" id="eBl-15-aqz"/>
@@ -25,7 +25,7 @@
                     </connections>
                 </tableView>
                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="gIH-zI-fB5">
-                    <rect key="frame" x="180" y="239" width="80" height="40"/>
+                    <rect key="frame" x="479" y="427" width="80" height="40"/>
                     <constraints>
                         <constraint firstAttribute="width" constant="80" id="S3p-qP-tS7"/>
                         <constraint firstAttribute="height" constant="40" id="pvL-sX-Guk"/>
@@ -40,13 +40,13 @@
                     </connections>
                 </button>
                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Translation" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Gn4-5P-zgp">
-                    <rect key="frame" x="96" y="40" width="83" height="21"/>
+                    <rect key="frame" x="246" y="40" width="83" height="21"/>
                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                     <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                     <nil key="highlightedColor"/>
                 </label>
                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="akr-tI-ONe">
-                    <rect key="frame" x="15" y="239" width="80" height="39"/>
+                    <rect key="frame" x="15" y="427" width="80" height="39"/>
                     <constraints>
                         <constraint firstAttribute="width" constant="80" id="3wh-FG-gJx"/>
                         <constraint firstAttribute="height" constant="39" id="Ymy-nQ-VnS"/>
@@ -74,17 +74,18 @@
                 <constraint firstAttribute="bottom" secondItem="akr-tI-ONe" secondAttribute="bottom" constant="12" id="lKI-aY-kWr"/>
                 <constraint firstAttribute="centerX" secondItem="WFV-wU-C1g" secondAttribute="centerX" id="o4N-vd-itM"/>
                 <constraint firstAttribute="centerX" secondItem="Gn4-5P-zgp" secondAttribute="centerX" id="spK-xo-PXI"/>
-                <constraint firstItem="akr-tI-ONe" firstAttribute="top" secondItem="Rjy-s5-rjs" secondAttribute="bottom" constant="20" id="wJf-8A-yge"/>
+                <constraint firstItem="akr-tI-ONe" firstAttribute="top" secondItem="Rjy-s5-rjs" secondAttribute="bottom" priority="250" constant="20" id="wJf-8A-yge"/>
             </constraints>
             <nil key="simulatedStatusBarMetrics"/>
             <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
             <connections>
                 <outlet property="confirmBtn" destination="gIH-zI-fB5" id="6rN-es-xrP"/>
                 <outlet property="deleteBtn" destination="akr-tI-ONe" id="9XN-Iz-KCh"/>
+                <outlet property="mainTitle" destination="WFV-wU-C1g" id="9Is-5g-Fhc"/>
                 <outlet property="table" destination="Rjy-s5-rjs" id="uG3-rX-5qr"/>
-                <outlet property="translatioTitle" destination="Gn4-5P-zgp" id="lfN-wT-yNh"/>
+                <outlet property="translationTitle" destination="Gn4-5P-zgp" id="UFQ-50-JmB"/>
             </connections>
-            <point key="canvasLocation" x="331.5" y="334"/>
+            <point key="canvasLocation" x="444" y="431"/>
         </view>
     </objects>
     <simulatedMetricsContainer key="defaultSimulatedMetrics">

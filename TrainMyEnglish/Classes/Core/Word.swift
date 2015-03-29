@@ -8,14 +8,28 @@
 
 import Foundation
 
+enum WordType {
+    case Noun, Pronoun, Verb, Adverb, Adjective, Preposition
+}
+
 class Word {
-    var base: String
+    var forms: Dictionary<String, String>
     var translation: String
     var tags: Array<String>?
+    var type: WordType
+    
+    var base: String {
+        return self.forms["base"]!
+    }
 
-    init(base: String, translation: String) {
-        self.base = base
+    init(forms: Dictionary<String, String>, translation: String, type: WordType) {
+        self.forms = forms
         self.translation = translation
+        self.type = type
+    }
+    
+    func formList(except: String) -> Array<String> {
+        return self.forms.values.array.filter{ $0 != except }
     }
 
 }

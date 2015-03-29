@@ -61,8 +61,14 @@ extension CGRect {
         }
         let farVertex = self.mostFarVertexFrom(point)
         let nearCoveredVertex = perfectRect.mostCloseVertexTo(farVertex)
-        let xOffset = farVertex.x - nearCoveredVertex.x
-        let yOffset = farVertex.y - nearCoveredVertex.y
+        
+        let xSign: CGFloat = farVertex.x < point.x ? 1 : -1
+        let ySign: CGFloat = farVertex.y < point.y ? 1 : -1
+        let isXImportant = xSign * (farVertex.x - nearCoveredVertex.x) < 0
+        let isYImportant = ySign * (farVertex.y - nearCoveredVertex.y) < 0
+        
+        let xOffset = isXImportant ? farVertex.x - nearCoveredVertex.x : 0
+        let yOffset = isYImportant ? farVertex.y - nearCoveredVertex.y : 0
         return CGRectOffset(perfectRect, xOffset, yOffset)
     }
     
