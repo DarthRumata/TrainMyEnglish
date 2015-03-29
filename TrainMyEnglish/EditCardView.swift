@@ -30,7 +30,7 @@ class EditCardView: UIView, UITableViewDataSource, UITableViewDelegate {
     private var baseFrame: CGRect!
     private var isOptionChanged = false
     private var confirmActionBlock: ((option: String) -> Void)!
-    private var deleteActionBlock: ((option: String) -> Void)!
+    private var deleteActionBlock: (() -> Void)!
     private static var instance: EditCardView!
     
     private(set) static var isVisible = false
@@ -70,6 +70,9 @@ class EditCardView: UIView, UITableViewDataSource, UITableViewDelegate {
         self.instance.confirmActionBlock = { (option) -> Void in
             cardView.applyWordForm(option)
             cardView.layoutView.rearrangeAllCards()
+        }
+        self.instance.deleteActionBlock = {
+            cardView.layoutView.removeCard(cardView)
         }
         self.instance.setup(word)
         self.instance.deleteBtn.enabled = canDelete
@@ -122,7 +125,8 @@ class EditCardView: UIView, UITableViewDataSource, UITableViewDelegate {
     //MARK: Actions
     
     @IBAction func deleteAction(sender: UIButton) {
-        
+        EditCardView.hide()
+        self.deleteActionBlock()
     }
     
     @IBAction func confirmAction(sender: AnyObject) {
