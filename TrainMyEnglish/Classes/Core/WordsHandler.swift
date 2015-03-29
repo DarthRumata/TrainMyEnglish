@@ -12,8 +12,8 @@ class WordsHandler {
 
     //MARK: Singleton
 
-    static var instance: WordsHandler!
-    static var dispatch_token: dispatch_once_t = 0
+    private static var instance: WordsHandler!
+    private static var dispatch_token: dispatch_once_t = 0
 
     private var nouns: Array<Word>?
     private var pronouns: Array<Word>?

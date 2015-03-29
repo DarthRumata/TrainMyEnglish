@@ -16,9 +16,12 @@ class CardTrainingController: UIViewController, UIGestureRecognizerDelegate {
     @IBOutlet weak var sentencePanel: CardLayoutView!
     @IBOutlet weak var wordsPanel: CardLayoutView!
     @IBOutlet weak var wordsPanelHC: NSLayoutConstraint!
+    @IBOutlet weak var taskActiveArea: UIButton!
     
     private var movingCard: CardView?
     private var hoveredView: CardLayoutView?
+    
+    private var currentTask: Task?
     
     //MARK: update UI
     
@@ -35,10 +38,9 @@ class CardTrainingController: UIViewController, UIGestureRecognizerDelegate {
         let tapRecognizer = UITapGestureRecognizer(target: self, action: Selector("cardTapped:"))
         tapRecognizer.delegate = self
         self.view.addGestureRecognizer(tapRecognizer)
-    }
-    
-    deinit {
-       NSNotificationCenter.defaultCenter().removeObserver(self, name: kTapCardNotification, object: nil)
+        
+        //data
+        self.updateTask()
     }
     
     override func viewDidAppear(animated: Bool) {
@@ -47,10 +49,16 @@ class CardTrainingController: UIViewController, UIGestureRecognizerDelegate {
         self.showCards()
     }
     
+    //MARK: Logic
+    func updateTask() {
+        self.currentTask = TaskHandler.sharedInstance.nextTask()
+        self.taskActiveArea.setTitle(self.currentTask!.description, forState: UIControlState.Normal)
+    }
+    
     //MARK: update UI
     
     func showCards() {
-        self.wordsPanel.fillWithWords(WordsHandler.sharedInstance.getAllWords())
+        self.wordsPanel.fillWithWords(self.currentTask!.words)
     }
     
     //MARK: Pan gesture

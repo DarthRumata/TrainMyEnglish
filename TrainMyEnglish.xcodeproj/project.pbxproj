@@ -23,6 +23,10 @@
 		92912B57FE733F40EA64A27D /* CardLayoutView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92912D0EEF6DE9D4077A36F8 /* CardLayoutView.swift */; };
 		92912C1EAD161BD78BD4B372 /* Word.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9291226C90838F2932F7DF26 /* Word.swift */; };
 		92912CD63DA618FD0707A232 /* Random.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92912EE9722A5518E7D3C2E9 /* Random.swift */; };
+		92DA05C11AC875F9008B4657 /* TaskHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92DA05C01AC875F9008B4657 /* TaskHandler.swift */; };
+		92DA05C31AC876A7008B4657 /* Task.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92DA05C21AC876A7008B4657 /* Task.swift */; };
+		92DA05C51AC89766008B4657 /* Rule.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92DA05C41AC89766008B4657 /* Rule.swift */; };
+		92DA05C71AC89924008B4657 /* Grammar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92DA05C61AC89924008B4657 /* Grammar.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -46,6 +50,10 @@
 		92912DB5A80364F85C43B744 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
 		92912DF55FDAF117628F3643 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		92912EE9722A5518E7D3C2E9 /* Random.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Random.swift; sourceTree = "<group>"; };
+		92DA05C01AC875F9008B4657 /* TaskHandler.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TaskHandler.swift; sourceTree = "<group>"; };
+		92DA05C21AC876A7008B4657 /* Task.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Task.swift; sourceTree = "<group>"; };
+		92DA05C41AC89766008B4657 /* Rule.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Rule.swift; sourceTree = "<group>"; };
+		92DA05C61AC89924008B4657 /* Grammar.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Grammar.swift; sourceTree = "<group>"; };
 		FDBE675746DDA2D46B3224BC /* Pods-TrainMyEnglish.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-TrainMyEnglish.release.xcconfig"; path = "Pods/Target Support Files/Pods-TrainMyEnglish/Pods-TrainMyEnglish.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -154,6 +162,10 @@
 				929122D26AEED53AA90A6D64 /* AppDelegate.swift */,
 				9291292D9CF4BF1AE8BB2A5E /* WordsHandler.swift */,
 				9291226C90838F2932F7DF26 /* Word.swift */,
+				92DA05C01AC875F9008B4657 /* TaskHandler.swift */,
+				92DA05C21AC876A7008B4657 /* Task.swift */,
+				92DA05C41AC89766008B4657 /* Rule.swift */,
+				92DA05C61AC89924008B4657 /* Grammar.swift */,
 			);
 			path = Core;
 			sourceTree = "<group>";
@@ -291,10 +303,14 @@
 				929126552A7E9172905429A8 /* CardView.swift in Sources */,
 				929126CB56512A6A4D3F9FA4 /* AppDelegate.swift in Sources */,
 				9291234CF838FE5782C23714 /* CardTrainingController.swift in Sources */,
+				92DA05C31AC876A7008B4657 /* Task.swift in Sources */,
 				929122B033BBEE9EC3E6FFBC /* WordsHandler.swift in Sources */,
 				85D7773C1AC41B12000EA555 /* EditCardView.swift in Sources */,
 				92912C1EAD161BD78BD4B372 /* Word.swift in Sources */,
+				92DA05C71AC89924008B4657 /* Grammar.swift in Sources */,
 				92912B57FE733F40EA64A27D /* CardLayoutView.swift in Sources */,
+				92DA05C51AC89766008B4657 /* Rule.swift in Sources */,
+				92DA05C11AC875F9008B4657 /* TaskHandler.swift in Sources */,
 				79B542C8973811A4006634D2 /* Geometry.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
