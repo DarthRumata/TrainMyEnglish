@@ -9,7 +9,7 @@
 import UIKit
 
 private let kSpaceBetweenPanels: CGFloat = 50
-private let kWordPanelRatio: CGFloat = 0.6
+private let kWordPanelRatio: CGFloat = 0.55
 private let kCancelMovementDuration = 0.2
 
 class CardTrainingController: UIViewController, UIGestureRecognizerDelegate {
@@ -22,6 +22,7 @@ class CardTrainingController: UIViewController, UIGestureRecognizerDelegate {
     private var hoveredView: CardLayoutView?
     
     private var currentTask: Task?
+    private var needReload = false
     
     //MARK: update UI
     
@@ -40,25 +41,35 @@ class CardTrainingController: UIViewController, UIGestureRecognizerDelegate {
         self.view.addGestureRecognizer(tapRecognizer)
         
         //data
-        self.updateTask()
+        self.updateTask() 
     }
     
     override func viewDidAppear(animated: Bool) {
         super.viewDidAppear(animated)
         
-        self.showCards()
+        if (needReload) {
+            self.showCards()
+        }
     }
     
     //MARK: Logic
+    
     func updateTask() {
         self.currentTask = TaskHandler.sharedInstance.nextTask()
         self.taskActiveArea.setTitle(self.currentTask!.description, forState: UIControlState.Normal)
+        self.needReload = true
     }
     
     //MARK: update UI
     
-    func showCards() {
+    private func showCards() {
+        self.needReload = false
         self.wordsPanel.fillWithWords(self.currentTask!.words)
+    }
+    
+    private func cleanScreen() {
+        self.sentencePanel.removeAll()
+        self.wordsPanel.removeAll()
     }
     
     //MARK: Pan gesture

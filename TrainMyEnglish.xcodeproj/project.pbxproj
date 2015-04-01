@@ -9,6 +9,8 @@
 /* Begin PBXBuildFile section */
 		3C3F6EB0A4D8CCD8211054F0 /* libPods-TrainMyEnglish.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 23AE83FDA26BD515F4A10CE9 /* libPods-TrainMyEnglish.a */; };
 		79B542C8973811A4006634D2 /* Geometry.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79B543654BB83429D30333AA /* Geometry.swift */; };
+		85D15E091ACA965700C53482 /* ChangeModeController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85D15E081ACA965700C53482 /* ChangeModeController.swift */; };
+		85D15E0B1ACAAC1100C53482 /* Queue.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85D15E0A1ACAAC1100C53482 /* Queue.swift */; };
 		85D7773A1AC4180E000EA555 /* EditCardView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 85D777391AC4180E000EA555 /* EditCardView.xib */; };
 		85D7773C1AC41B12000EA555 /* EditCardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85D7773B1AC41B12000EA555 /* EditCardView.swift */; };
 		92350FD61AB5A9AF00386393 /* words.plist in Resources */ = {isa = PBXBuildFile; fileRef = 92350FD51AB5A9AF00386393 /* words.plist */; };
@@ -34,6 +36,8 @@
 		23AE83FDA26BD515F4A10CE9 /* libPods-TrainMyEnglish.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-TrainMyEnglish.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		79B543654BB83429D30333AA /* Geometry.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Geometry.swift; sourceTree = "<group>"; };
 		79B5470E86E7BC31EBD17A28 /* TrainMyEnglish-Bridging-Header.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "TrainMyEnglish-Bridging-Header.h"; sourceTree = "<group>"; };
+		85D15E081ACA965700C53482 /* ChangeModeController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ChangeModeController.swift; sourceTree = "<group>"; };
+		85D15E0A1ACAAC1100C53482 /* Queue.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Queue.swift; sourceTree = "<group>"; };
 		85D777391AC4180E000EA555 /* EditCardView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = EditCardView.xib; sourceTree = "<group>"; };
 		85D7773B1AC41B12000EA555 /* EditCardView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EditCardView.swift; sourceTree = "<group>"; };
 		92350FB01AB5A92C00386393 /* TrainMyEnglish.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = TrainMyEnglish.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -130,6 +134,7 @@
 			isa = PBXGroup;
 			children = (
 				92912B11B52C893D37826B3C /* CardTrainingController.swift */,
+				85D15E081ACA965700C53482 /* ChangeModeController.swift */,
 			);
 			path = ViewControllers;
 			sourceTree = "<group>";
@@ -166,6 +171,7 @@
 				92DA05C21AC876A7008B4657 /* Task.swift */,
 				92DA05C41AC89766008B4657 /* Rule.swift */,
 				92DA05C61AC89924008B4657 /* Grammar.swift */,
+				85D15E0A1ACAAC1100C53482 /* Queue.swift */,
 			);
 			path = Core;
 			sourceTree = "<group>";
@@ -303,11 +309,13 @@
 				929126552A7E9172905429A8 /* CardView.swift in Sources */,
 				929126CB56512A6A4D3F9FA4 /* AppDelegate.swift in Sources */,
 				9291234CF838FE5782C23714 /* CardTrainingController.swift in Sources */,
+				85D15E091ACA965700C53482 /* ChangeModeController.swift in Sources */,
 				92DA05C31AC876A7008B4657 /* Task.swift in Sources */,
 				929122B033BBEE9EC3E6FFBC /* WordsHandler.swift in Sources */,
 				85D7773C1AC41B12000EA555 /* EditCardView.swift in Sources */,
 				92912C1EAD161BD78BD4B372 /* Word.swift in Sources */,
 				92DA05C71AC89924008B4657 /* Grammar.swift in Sources */,
+				85D15E0B1ACAAC1100C53482 /* Queue.swift in Sources */,
 				92912B57FE733F40EA64A27D /* CardLayoutView.swift in Sources */,
 				92DA05C51AC89766008B4657 /* Rule.swift in Sources */,
 				92DA05C11AC875F9008B4657 /* TaskHandler.swift in Sources */,

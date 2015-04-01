@@ -30,4 +30,20 @@ enum SentenceMood: String {
 
 class Grammar {
     
+    static let allTenses = [Tense.Past.rawValue, Tense.Present.rawValue, Tense.Future.rawValue]
+    static let allAspects = [Aspect.Simple.rawValue, Aspect.Continuous.rawValue, Aspect.Perfect.rawValue, Aspect.PerfectContinuous.rawValue]
+    static let allMoods = [SentenceMood.Narrative.rawValue, SentenceMood.Negative.rawValue, SentenceMood.Interrogative.rawValue]
+
+}
+
+class GrammarForm {
+    var tense: Tense
+    var aspect: Aspect
+    var mood: SentenceMood
+    
+    init(tense: Tense, aspect: Aspect, mood: SentenceMood) {
+        self.tense = tense
+        self.aspect = aspect
+        self.mood = mood
+    }
 }

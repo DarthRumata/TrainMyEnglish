@@ -101,6 +101,14 @@ class CardLayoutView: UIView {
         self.rearrangeCards(0, to: self.cards.count - 1)
     }
     
+    func removeAll() {
+        for card in self.cards {
+            card.removeFromSuperview()
+        }
+        
+        self.cards.removeAll(keepCapacity: true)
+    }
+    
     private func rearrangeCards(from: Int, to: Int) {
         if (from < self.cards.count) {
             for i in from...to {

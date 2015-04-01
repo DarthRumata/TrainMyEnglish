@@ -8,11 +8,18 @@
 
 import Foundation
 
+enum TaskMode: Int {
+    case Sandbox = 0
+}
+
 class TaskHandler {
     //MARK: Singleton
     
-   private static var instance: TaskHandler!
-   private static var dispatch_token: dispatch_once_t = 0
+    private static var instance: TaskHandler!
+    private static var dispatch_token: dispatch_once_t = 0
+    
+    private var taskMode = TaskMode.Sandbox
+    private var taskQueue: Queue<Task>!
     
     private init() {
     }
@@ -29,9 +36,19 @@ class TaskHandler {
     
     //MARK: Public
     
-    func nextTask() -> Task {
+    func nextTask() -> Task? {
         //TODO demo task
-        return Task(description: self.makeDescription(Tense.Present, Aspect.Simple, SentenceMood.Narrative), rules: [], words: WordsHandler.sharedInstance.getAllWords())
+        switch (self.taskMode) {
+        case .Sandbox:
+           return taskQueue.deQueue()
+        }
+    }
+    
+    func pushSandboxTask(fromSentenceGrammarForm form: GrammarForm) {
+        self.taskMode = TaskMode.Sandbox
+        self.taskQueue.clear()
+        let task = Task(description: self.makeDescription(form.tense , form.aspect, form.mood), rules: [], words: WordsHandler.sharedInstance.getAllWords())
+        self.taskQueue.enQueue(task)
     }
     
     private func makeDescription(tense: Tense, _ aspect: Aspect, _ mood: SentenceMood) -> String {
